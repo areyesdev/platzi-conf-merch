@@ -1,11 +1,12 @@
 import React, { useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
 
 const Information = () => {
   const { state, addToBuyer } = useContext(AppContext);
   const form = useRef(null);
+  const history = useHistory();
   const { cart } = state;
 
   const handleSubmit = () => {
@@ -22,6 +23,7 @@ const Information = () => {
       phone: formData.get('phone'),
     };
     addToBuyer(buyer);
+    history.push('/checkout/payment');
   };
 
   return (
@@ -56,8 +58,8 @@ const Information = () => {
       </div>
       <div className="Information-sidebar">
         <h3>Pedido:</h3>
-        {cart.map((item) => (
-          <div className="Information-item" key={item.title}>
+        {cart.map((item, i) => (
+          <div className="Information-item" key={i}>
             <div className="Information-element">
               <h4>{item.title}</h4>
               <span>${item.price}</span>
