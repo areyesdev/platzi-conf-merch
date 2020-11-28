@@ -22,8 +22,8 @@ const Home = () => {
       <meta property="og:type" content="article" />
       <meta property="fb:app_id" content="ID_APP_FACEBOOK" />
     </Helmet>
-    <Products products={initialState.products} />;
   </>;
+  return <Products products={initialState.products} />;
 };
 
 export default Home;
